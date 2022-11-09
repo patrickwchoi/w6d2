@@ -16,12 +16,15 @@ class SQLObject
   end
 
   def self.finalize!
+
     self.columns.each do |coln|
       define_method("#{coln}=") do |new_val|
-        @attributes[coln] = new_val
+        attributes[coln] = new_val #attributes returns the @attributes hash
+        #same as: h = attributes
+        #         h[coln] = new_val
       end
       define_method("#{coln}") do
-        @attributes[coln]
+        attributes[coln]
       end
     end
   end
